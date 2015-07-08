@@ -1,0 +1,32 @@
+Source: kafka-python
+Maintainer: Filip Pytloun <filip.pytloun@tcpcloud.eu>
+Section: python
+Priority: optional
+Build-Depends: python-setuptools (>= 0.6b3), python-all (>= 2.6.6-3), debhelper (>= 9)
+Standards-Version: 3.9.1
+
+Package: python-kafka-python
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Description: Pure Python client for Apache Kafka
+ Kafka Python client
+ ------------------------
+ .. image:: https://api.travis-ci.org/mumrah/kafka-python.png?branch=master
+     :target: https://travis-ci.org/mumrah/kafka-python
+     :alt: Build Status
+ .
+ .. image:: https://coveralls.io/repos/mumrah/kafka-python/badge.svg?branch=master
+     :target: https://coveralls.io/r/mumrah/kafka-python?branch=master
+     :alt: Coverage Status
+ .
+ .. image:: https://readthedocs.org/projects/kafka-python/badge/?version=latest
+     :target: http://kafka-python.readthedocs.org/en/latest/
+     :alt: Full documentation available on ReadTheDocs
+ .
+ `Full documentation available on ReadTheDocs`_
+ .
+ This module provides low-level protocol support for Apache Kafka as well as
+ high-level consumer and producer classes. Request batching is supported by the
+ protocol as well as broker-aware request routing. Gzip and Snappy compression
+ is also supported for message sets.
+
