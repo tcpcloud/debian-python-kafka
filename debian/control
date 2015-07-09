@@ -7,7 +7,6 @@ Standards-Version: 3.9.1
 Homepage: https://github.com/mumrah/kafka-python
 
 Package: python-kafka
-Provides: python-kafka-python
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}
 Description: Pure Python client for Apache Kafka
@@ -16,4 +15,11 @@ Description: Pure Python client for Apache Kafka
  high-level consumer and producer classes. Request batching is supported by the
  protocol as well as broker-aware request routing. Gzip and Snappy compression
  is also supported for message sets.
+
+Package: python-kafka-python
+Architecture: all
+Depends: python-kafka (= ${binary:Version})
+Description: Pure Python client for Apache Kafka
+ .
+ This package only installs python-kafka and is used only to satisfy dependencies from other packages.
 
