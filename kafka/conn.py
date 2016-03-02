@@ -118,6 +118,11 @@ class KafkaConnection(local):
 
     # TODO multiplex socket communication to allow for multi-threaded clients
 
+    def get_connected_socket(self):
+        if not self._sock:
+            self.reinit()
+        return self._sock
+
     def send(self, request_id, payload):
         """
         Send a request to Kafka
@@ -150,6 +155,10 @@ class KafkaConnection(local):
             str: Encoded kafka packet response from server
         """
         log.debug("Reading response %d from Kafka" % request_id)
+
+        # Make sure we have a connection
+        if not self._sock:
+            self.reinit()
 
         # Read the size off of the header
         resp = self._read_bytes(4)
