@@ -1,3 +1,9 @@
+python-kafka (1.2.1-0tcp1~trusty1) trusty; urgency=medium
+
+  * trusty build of latest python-kafka
+
+ -- Filip Pytloun <filip@pytloun.cz>  Tue, 14 Jun 2016 18:55:27 +0200
+
 python-kafka (0.9.5-1) unstable; urgency=medium
 
   [ Ondřej Nový ]
