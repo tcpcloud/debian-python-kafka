@@ -53,6 +53,7 @@ DEPRECATED_CONFIG_KEYS = {
 
 class KafkaConsumer(object):
     """A simpler kafka consumer"""
+    DEFAULT_CONFIG = deepcopy(DEFAULT_CONSUMER_CONFIG)
 
     def __init__(self, *topics, **configs):
         self.configure(**configs)
@@ -111,8 +112,8 @@ class KafkaConsumer(object):
         """
         configs = self._deprecate_configs(**configs)
         self._config = {}
-        for key in DEFAULT_CONSUMER_CONFIG:
-            self._config[key] = configs.pop(key, DEFAULT_CONSUMER_CONFIG[key])
+        for key in self.DEFAULT_CONFIG:
+            self._config[key] = configs.pop(key, self.DEFAULT_CONFIG[key])
 
         if configs:
             raise KafkaConfigurationError('Unknown configuration key(s): ' +
@@ -267,6 +268,10 @@ class KafkaConsumer(object):
 
         # Reset message iterator in case we were in the middle of one
         self._reset_message_iterator()
+
+    def close(self):
+        """Close this consumer's underlying client."""
+        self._client.close()
 
     def next(self):
         """Return the next available message
@@ -660,7 +665,7 @@ class KafkaConsumer(object):
             # Otherwise we should re-raise the upstream exception
             # b/c it typically includes additional data about
             # the request that triggered it, and we do not want to drop that
-            raise
+            raise # pylint: disable-msg=E0704
 
         (offset, ) = self.get_partition_offsets(topic, partition,
                                                 request_time_ms, max_num_offsets=1)
